@@ -1,0 +1,138 @@
+// CViewPro.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (CViewPro.tlb) that will become a resource in
+// CViewPro.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(2B6904DD-5765-4AE8-B211-93BF83DA180E), version(1.0),
+  helpfile("CViewPro.hlp"),
+  helpstring("CViewPro ActiveX Control module"),
+  control ]
+library CVIEWPROLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CCViewProCtrl
+
+	[ uuid(840D0EA2-2A4E-4D45-AD21-76AC2220CFC1),
+	  helpstring("Dispatch interface for CViewPro Control"), hidden ]
+	dispinterface _DCViewPro
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CCViewProCtrl)
+			[id(1)] short Index;
+			[id(2)] short Behavior;
+			[id(3)] short Shrink;
+			[id(4)] short Align;
+			[id(5)] short Mode;
+			[id(6)] short InitWidth;
+			[id(7)] short InitHeight;
+			[id(8)] short ContainerScreenWidth;
+			[id(9)] short ContainerScreenHeight;
+			[id(10)] short AutoSize;
+			[id(11)] long Handle;
+			[id(12)] short Border;
+			[id(13)] BSTR BorderColor;
+			[id(14)] short HoverBorder;
+			[id(15)] BSTR HoverBorderColor;
+			[id(16)] BSTR BackgroundColor;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CCViewProCtrl)
+			[id(17)] boolean Init();
+			[id(18)] void SetPosRect(short left, short top, short right, short bottom);
+			[id(19)] boolean Copy(long handle);
+			[id(20)] boolean Crop();
+			[id(21)] void Zoom(double value);
+			[id(22)] void Rotate(float angle);
+			[id(23)] boolean Deskew();
+			[id(24)] boolean Destain();
+			[id(25)] boolean CanUndo();
+			[id(26)] boolean CanRedo();
+			[id(27)] void Undo();
+			[id(28)] void Redo();
+			[id(29)] short GetScale();
+			[id(30)] void Clear();
+			[id(31)] boolean Save();
+			[id(32)] BSTR GetGId();
+			[id(33)] BSTR GetIId();
+			[id(34)] short GetSourceType();
+			[id(35)] BSTR GetSourceDevice();
+			[id(36)] BSTR Version();
+			[id(37)] boolean Filled();
+			[id(38)] boolean Remove();
+			[id(39)] boolean CreateTo(short mode,long handle);
+			[id(40)] short GetScreenWidth();
+			[id(41)] short GetScreenHeight();
+			[id(42)] short GetLeft();
+			[id(43)] short GetTop();
+			[id(44)] short GetWidth();
+			[id(45)] short GetHeight();
+			[id(46)] short GetIWidth();
+			[id(47)] short GetIHeight();
+			[id(48)] BSTR GetFileSize();
+			[id(49)] boolean IsDrag();
+			[id(50)] BSTR GetImage(short quality,double scale);
+			[id(51)] void MoveImage(int x,int y, int newX, int newY);
+			[id(52)] void SetBackground(short background);
+			[id(53)] void CreateRect(int left,int top, int right, int bottom,short thickness,BSTR lpszColorValue);
+			[id(54)] void ClearRect();
+			[id(55)] void EnableWaterMark(short enable);
+			[id(56)] void SetWaterMark(BSTR sWaterMarkBase64,short nPostion);
+			[id(57)] void SetTextWaterMark(BSTR sText,BSTR sIP,BSTR sData,short nPostion);
+			[id(58)] void AddSignature(BSTR sSignatureBase64,long xOffset,long yOffset);
+			//[id(59)] void ExportFile(BSTR sText,BSTR sIP,BSTR sData,short nPostion);
+			//[id(59)] void AddImageIdentify(BSTR sSignatureBase64,long xOffset,long yOffset);
+			[id(59)] BSTR GetSelRectInfo();
+
+
+			//}}AFX_ODL_METHOD
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CCViewProCtrl
+
+	[ uuid(960CF78B-25F7-4E35-8ADA-8FB47710C31F),
+	  helpstring("Event interface for CViewPro Control") ]
+	dispinterface _DCViewProEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CCViewProCtrl)
+			[id(1)] void OnMouseMove(short index, short x, short y);
+			[id(2)] void OnMouseHover(short index, short x, short y);
+			[id(3)] void OnMouseLeave(short index, short x, short y);
+			[id(4)] void OnDBClick(short index, short x, short y);
+			[id(5)] void OnDragStart(short index, short x, short y);
+			[id(6)] void OnDrag(short index, short x, short y);
+			[id(7)] void OnDragEnd(short index, short x, short y);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CCViewProCtrl
+
+	[ uuid(F599076A-42DC-4AB9-8B39-9B117A0B0F36),
+	  helpstring("CViewPro Control"), control ]
+	coclass CViewPro
+	{
+		[default] dispinterface _DCViewPro;
+		[default, source] dispinterface _DCViewProEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,12 @@
+cabarc n CViewPro.cab CViewPro.inf CViewPro.ocx
+
+makecert -sk CViewPro CViewPro.pvk -n CN=XXXXXXX公司
+
+makecert -$ "individual" -r /sv "CViewPro.pvk" /n "cn=XXXXXXX公司" CViewPro.cer 
+
+
+cert2spc CViewPro.cer CViewPro.spc
+
+signcode
+
+copy CViewPro.cab D:\resin-pro-3.1.9\webapps\ROOT /y
